@@ -19,8 +19,20 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-
             em.persist(member);
+
+            // flush -> commit, query
+
+            em.flush();
+
+            // 결과 : 0
+            // dbconn.executeQuery("select * from member");
+
+            for (Member member1 : resultList) {
+                System.out.println("member1 = " + member1);
+            }
+
+            tx.commit();
 
             Team team = new Team();
             team.setName("TeamA");
